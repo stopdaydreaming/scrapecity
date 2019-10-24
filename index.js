@@ -1,26 +1,21 @@
-import { getHTML, getTwitterFollowers, getInstagramFollowers } from './lib/scraper';
+import express from 'express';
+import {
+    getInstagramCount,
+    getTwitterCount
+} from './lib/scraper';
 
-async function go() {
-    
-    // const twitterHTML = await getHTML('https://twitter.com/wesbos');
-    // const twitCount = await getTwitterFollowers(twitterHTML);
-    // console.log(`wes has ${twitCount} twitter followers`);
+const app = express();
 
-    // const igHTML = await getHTML('https://instagram.com/wesbos');
-    // const igCount = await getInstagramFollowers(igHTML);
-    // console.log(`wes has ${igCount} IG followers`);
+app.get('/scrape', async(req, res, next) => {
+    console.log('scraping');
+    const [ iCount, tCount ] = await Promise.all([
+        getInstagramCount(),
+        getTwitterCount()
+    ]);
+    console.log(iCount, tCount);
+    res.json({iCount, tCount});
+});
 
-    //REFACTORED    
-
-    const iPromise = await getHTML('https://instagram.com/wesbos');
-    const tPromise = await getHTML('https://twitter.com/wesbos');
-    const [igHTML, twitterHTML] = await Promise.all([ iPromise, tPromise ]);
-
-    const igCount = await getInstagramFollowers(igHTML);
-    const twitCount = await getTwitterFollowers(twitterHTML);
-
-    console.log(`wes has ${igCount} IG followers`);
-    console.log(`wes has ${twitCount} twitter followers`);
-}   
-
-go();
+app.listen(2093, () => {
+  console.log(`example app running 2093`)
+});
