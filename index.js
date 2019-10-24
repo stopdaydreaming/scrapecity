@@ -18,6 +18,13 @@ app.get('/scrape', async(req, res, next) => {
     res.json({ iCount, tCount });
 });
 
-app.listen(2093, () => {
-  console.log(`example app running 2093`)
+app.get('/data', async(req, res, next) => {
+  //get data scrape
+  const twitter = db.value();
+  //respond with json
+  res.json(twitter);
+})
+
+app.listen(3000, () => {
+  console.log(`example app running http://localhost:3000`)
 });
