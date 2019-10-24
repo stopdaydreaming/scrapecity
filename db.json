@@ -1,14 +1,26 @@
 {
-  "posts": [
+  "twitter": [
     {
-      "id": 1,
-      "title": "lowdb is awesome"
+      "date": 1571931907475,
+      "count": 185661
     },
     {
-      "id": 1,
-      "title": "lowdb is awesome"
+      "date": 1571931923566,
+      "count": 185661
     }
   ],
-  "user": {},
-  "count": 0
+  "instagram": [
+    {
+      "date": 1571931829995,
+      "count": 21741
+    },
+    {
+      "date": 1571931907475,
+      "count": 21741
+    },
+    {
+      "date": 1571931923566,
+      "count": 21741
+    }
+  ]
 }
